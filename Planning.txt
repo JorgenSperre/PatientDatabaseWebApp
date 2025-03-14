@@ -1,0 +1,14 @@
+Velger å bruke Blazor.
+-Enkel oppsett med EF somn O/RM -> lokal database lagret i minne.
+God brukerveiledning for en filmdatabase: https://learn.microsoft.com/en-us/aspnet/core/blazor/tutorials/movie-database-app/?view=aspnetcore-9.0
+Kan sannsynligvis tilpasses oppgaven.
+-Lage en database med Patient som Datamodel.
+-Inkluderer søk, endringer, sletting ogs.
+-Har mulighet for Input Validering.
+
+Testing:
+-Prøve ut Copilot testgenerering.
+-Razor componenter trenger ekstra bibliotek for testing, kanskje like enkelt å teste gui manuelt for et så lite prosjekt.
+-Playwright kan være interessant.
+
+Kan vurdere å teste ut Docker.
