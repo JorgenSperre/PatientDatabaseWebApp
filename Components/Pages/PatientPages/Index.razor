@@ -1,0 +1,38 @@
+﻿@page "/patients"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using PatientDatabaseWebApp.DataModels
+@using PatientDatabaseWebApp.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<PatientDatabaseWebApp.Data.PatientDatabaseWebAppContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="patients/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Patient">
+    <PropertyColumn Property="patient => patient.Name" />
+    <PropertyColumn Property="patient => patient.DateOfBirth" />
+    <PropertyColumn Property="patient => patient.Conditions" />
+
+    <TemplateColumn Context="patient">
+        <a href="@($"patients/edit?id={patient.Id}")">Edit</a> |
+        <a href="@($"patients/details?id={patient.Id}")">Details</a> |
+        <a href="@($"patients/delete?id={patient.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private PatientDatabaseWebAppContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
