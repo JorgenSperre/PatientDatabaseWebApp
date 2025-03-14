@@ -41,12 +41,7 @@
 
 @code {
     [SupplyParameterFromForm]
-    private Patient Patient { get; set; }
-
-    public Create(Patient patient)
-    {
-        Patient = patient;
-    }
+    private Patient Patient { get; set; } = new();
 
     private async Task AddPatient()
     {
