@@ -1,4 +1,5 @@
 ﻿@page "/patients"
+@rendermode InteractiveServer
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using PatientDatabaseWebApp.DataModels
@@ -10,21 +11,18 @@
 
 <h1>Patients</h1>
 <div>
-    <form action="/patients" data-enhance data-permanent>
-        <input type="search" name="nameFilter" />
-        <input type="submit" value="Search" />
-    </form>
+    <input type="search" @bind="searchFilter" @bind:event="oninput" />
 </div>
 <p>
     <a href="patients/create">Add New Patient</a>
 </p>
 
-<QuickGrid Class="table" Items="FilteredPatients">
-    <PropertyColumn Property="patient => patient.Id" />
-    <PropertyColumn Property="patient => patient.Name" />
-    <PropertyColumn Property="patient => patient.DateOfBirth" Title="Date of Birth"/>
-    <PropertyColumn Property="patient => patient.Age" />
-    <PropertyColumn Property="patient => patient.Conditions" />
+<QuickGrid Class="table" Items="FilteredPatients" Pagination="pagination">
+    <PropertyColumn Property="patient => patient.Id" Sortable="true" />
+    <PropertyColumn Property="patient => patient.Name" Sortable="true" />
+    <PropertyColumn Property="patient => patient.DateOfBirth" Title="Date of Birth" Sortable="true" />
+    <PropertyColumn Property="patient => patient.Age" Sortable="true" />
+    <PropertyColumn Property="patient => patient.Conditions" Sortable="true" />
 
     <TemplateColumn Context="patient">
         <a href="@($"patients/edit?id={patient.Id}")">Edit</a> |
@@ -32,6 +30,7 @@
         <a href="@($"patients/delete?id={patient.Id}")">Delete</a>
     </TemplateColumn>
 </QuickGrid>
+<Paginator State="pagination" />
 
 @code {
     private PatientDatabaseWebAppContext context = default!;
@@ -43,11 +42,10 @@
 
     public async ValueTask DisposeAsync() => await context.DisposeAsync();
 
-    [SupplyParameterFromQuery]
-    private string? NameFilter { get; set; }
+    private string searchFilter = string.Empty;
 
     private IQueryable<Patient> FilteredPatients =>
-        int.TryParse(NameFilter, out int id)
-            ? context.Patient.Where(m => m.Id == id)
-            : context.Patient.Where(m => m.Name!.Contains(NameFilter ?? string.Empty));
+        context.Patient.Where(m => m.Name!.Contains(searchFilter) || m.Id.ToString().Contains(searchFilter));
+
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
 }

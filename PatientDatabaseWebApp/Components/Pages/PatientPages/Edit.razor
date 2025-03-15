@@ -20,7 +20,7 @@ else
         <div class="col-md-4">
             <EditForm method="post" Model="Patient" OnValidSubmit="UpdatePatient" FormName="edit" Enhance>
                 <DataAnnotationsValidator />
-                <ValidationSummary role="alert"/>
+                <ValidationSummary role="alert" />
                 <input type="hidden" name="Patient.Id" value="@Patient.Id" />
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
@@ -31,11 +31,6 @@ else
                     <label for="dateofbirth" class="form-label">Date Of Birth:</label>
                     <InputDate id="dateofbirth" @bind-Value="Patient.DateOfBirth" class="form-control" />
                     <ValidationMessage For="() => Patient.DateOfBirth" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="age" class="form-label">Age:</label>
-                    <InputNumber id="age" @bind-Value="Patient.Age" class="form-control" />
-                    <ValidationMessage For="() => Patient.Age" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="conditions" class="form-label">Conditions:</label>
@@ -75,7 +70,8 @@ else
     private async Task UpdatePatient()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Attach(Patient!).State = EntityState.Modified;
+        Patient!.FindAge(); // Update the age based on the date of birth
+        context.Attach(Patient).State = EntityState.Modified;
 
         try
         {
@@ -83,7 +79,7 @@ else
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!PatientExists(Patient!.Id))
+            if (!PatientExists(Patient.Id))
             {
                 NavigationManager.NavigateTo("notfound");
             }
