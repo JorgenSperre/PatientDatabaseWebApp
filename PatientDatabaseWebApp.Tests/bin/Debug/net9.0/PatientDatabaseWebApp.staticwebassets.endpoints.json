@@ -3,13 +3,13 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
-      "Route": "PatientDatabaseWebApp.qbdkdac7y4.styles.css",
+      "Route": "PatientDatabaseWebApp.hrpk00esp1.styles.css",
       "AssetFile": "PatientDatabaseWebApp.styles.css.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000546746856"
+          "Quality": "0.000530503979"
         }
       ],
       "ResponseHeaders": [
@@ -27,7 +27,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1828"
+          "Value": "1884"
         },
         {
           "Name": "Content-Type",
@@ -35,15 +35,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YcVtkwZRbH4EynKNht8Gj3EzrjZkUP1NczUU9vD8bX4=\""
+          "Value": "\"12HuT2vGIk+p0xEP0uN3w4b2xm4oY7UfrWuQz0OgzKY=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4=\""
+          "Value": "W/\"bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 17:33:11 GMT"
+          "Value": "Sat, 15 Mar 2025 17:46:45 GMT"
         },
         {
           "Name": "Link",
@@ -57,11 +57,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "qbdkdac7y4"
+          "Value": "hrpk00esp1"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4="
+          "Value": "sha256-bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw="
         },
         {
           "Name": "label",
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "Route": "PatientDatabaseWebApp.qbdkdac7y4.styles.css",
+      "Route": "PatientDatabaseWebApp.hrpk00esp1.styles.css",
       "AssetFile": "PatientDatabaseWebApp.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -84,7 +84,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6122"
+          "Value": "6327"
         },
         {
           "Name": "Content-Type",
@@ -92,11 +92,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4=\""
+          "Value": "\"bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 17:33:11 GMT"
+          "Value": "Sat, 15 Mar 2025 17:46:45 GMT"
         },
         {
           "Name": "Link",
@@ -106,11 +106,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "qbdkdac7y4"
+          "Value": "hrpk00esp1"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4="
+          "Value": "sha256-bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw="
         },
         {
           "Name": "label",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "Route": "PatientDatabaseWebApp.qbdkdac7y4.styles.css.gz",
+      "Route": "PatientDatabaseWebApp.hrpk00esp1.styles.css.gz",
       "AssetFile": "PatientDatabaseWebApp.styles.css.gz",
       "Selectors": [],
       "ResponseHeaders": [
@@ -137,7 +137,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1828"
+          "Value": "1884"
         },
         {
           "Name": "Content-Type",
@@ -145,11 +145,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YcVtkwZRbH4EynKNht8Gj3EzrjZkUP1NczUU9vD8bX4=\""
+          "Value": "\"12HuT2vGIk+p0xEP0uN3w4b2xm4oY7UfrWuQz0OgzKY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 17:33:11 GMT"
+          "Value": "Sat, 15 Mar 2025 17:46:45 GMT"
         },
         {
           "Name": "Vary",
@@ -159,11 +159,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "qbdkdac7y4"
+          "Value": "hrpk00esp1"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-YcVtkwZRbH4EynKNht8Gj3EzrjZkUP1NczUU9vD8bX4="
+          "Value": "sha256-12HuT2vGIk+p0xEP0uN3w4b2xm4oY7UfrWuQz0OgzKY="
         },
         {
           "Name": "label",
@@ -178,7 +178,7 @@
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000546746856"
+          "Quality": "0.000530503979"
         }
       ],
       "ResponseHeaders": [
@@ -196,7 +196,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1828"
+          "Value": "1884"
         },
         {
           "Name": "Content-Type",
@@ -204,15 +204,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YcVtkwZRbH4EynKNht8Gj3EzrjZkUP1NczUU9vD8bX4=\""
+          "Value": "\"12HuT2vGIk+p0xEP0uN3w4b2xm4oY7UfrWuQz0OgzKY=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4=\""
+          "Value": "W/\"bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 17:33:11 GMT"
+          "Value": "Sat, 15 Mar 2025 17:46:45 GMT"
         },
         {
           "Name": "Link",
@@ -226,7 +226,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4="
+          "Value": "sha256-bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw="
         }
       ]
     },
@@ -245,7 +245,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6122"
+          "Value": "6327"
         },
         {
           "Name": "Content-Type",
@@ -253,11 +253,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4=\""
+          "Value": "\"bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 17:33:11 GMT"
+          "Value": "Sat, 15 Mar 2025 17:46:45 GMT"
         },
         {
           "Name": "Link",
@@ -267,7 +267,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-imrP6LyXLOD1vA+3bxuN8uAeH5k8sSQGlR049t6k0H4="
+          "Value": "sha256-bZ+d5lAq9q4mvWBO7p8wOFsXmy0l+R9pD0zmIEMJwxw="
         }
       ]
     },
@@ -290,7 +290,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1828"
+          "Value": "1884"
         },
         {
           "Name": "Content-Type",
@@ -298,11 +298,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YcVtkwZRbH4EynKNht8Gj3EzrjZkUP1NczUU9vD8bX4=\""
+          "Value": "\"12HuT2vGIk+p0xEP0uN3w4b2xm4oY7UfrWuQz0OgzKY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 17:33:11 GMT"
+          "Value": "Sat, 15 Mar 2025 17:46:45 GMT"
         },
         {
           "Name": "Vary",
@@ -312,7 +312,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YcVtkwZRbH4EynKNht8Gj3EzrjZkUP1NczUU9vD8bX4="
+          "Value": "sha256-12HuT2vGIk+p0xEP0uN3w4b2xm4oY7UfrWuQz0OgzKY="
         }
       ]
     },

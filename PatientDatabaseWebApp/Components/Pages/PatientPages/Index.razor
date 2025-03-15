@@ -12,11 +12,12 @@
 <h1>Patients</h1>
 <div>
     <input type="search" @bind="searchFilter" @bind:event="oninput" />
+    <button @onclick="ClearSearch">Clear</button>
 </div>
 <p>
     <a href="patients/create">Add New Patient</a>
 </p>
-
+<div>
 <QuickGrid Class="table" Items="FilteredPatients" Pagination="pagination">
     <PropertyColumn Property="patient => patient.Id" Sortable="true" />
     <PropertyColumn Property="patient => patient.Name" Sortable="true" />
@@ -30,6 +31,7 @@
         <a href="@($"patients/delete?id={patient.Id}")">Delete</a>
     </TemplateColumn>
 </QuickGrid>
+</div>
 <Paginator State="pagination" />
 
 @code {
@@ -48,4 +50,9 @@
         context.Patient.Where(m => m.Name!.Contains(searchFilter) || m.Id.ToString().Contains(searchFilter));
 
     private PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
+
+    private void ClearSearch()
+    {
+        searchFilter = string.Empty;
+    }
 }
