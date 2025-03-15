@@ -75,3 +75,73 @@
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.patient-statistics {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+    .patient-statistics h2 {
+        margin-top: 0;
+    }
+
+.condition-selection {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+    .condition-selection h2 {
+        margin-top: 0;
+    }
+
+.filtered-patients {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+    .filtered-patients h2 {
+        margin-top: 0;
+    }
+
+.quick-links {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+    .quick-links h2 {
+        margin-top: 0;
+    }
+
+    .quick-links ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .quick-links li {
+        margin-bottom: 10px;
+    }
+
+    .quick-links a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .quick-links a:hover {
+            text-decoration: underline;
+        }

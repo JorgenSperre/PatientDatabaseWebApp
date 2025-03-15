@@ -11,29 +11,33 @@
 
 <div class="main-container">
     <div class="left-container">
-        <h2>Patient Statistics</h2>
-        <p>Total Patients: @totalPatients</p>
-        <p>Average Age: @Math.Round(averageAge)</p>
-        <p>Most Common Conditions:</p>
-        <ul>
-            @foreach (var condition in mostCommonConditions)
-            {
-                <li>@condition.Key: @condition.Value</li>
-            }
-        </ul>
+        <div class="patient-statistics">
+            <h2>Patient Statistics</h2>
+            <p>Total Patients: @totalPatients</p>
+            <p>Average Age: @Math.Round(averageAge)</p>
+            <p>Most Common Conditions:</p>
+            <ul>
+                @foreach (var condition in mostCommonConditions)
+                {
+                    <li>@condition.Key: @condition.Value</li>
+                }
+            </ul>
+        </div>
 
-        <h2>Find Patients by Condition</h2>
-        <select @onchange="OnConditionChanged">
-            <option value="">Select a condition</option>
-            @foreach (var condition in allConditions)
-            {
-                <option value="@condition">@condition</option>
-            }
-        </select>
+        <div class="condition-selection">
+            <h2>Find Patients by Condition</h2>
+            <select @onchange="OnConditionChanged">
+                <option value="">Select a condition</option>
+                @foreach (var condition in allConditionsWithCounts)
+                {
+                    <option value="@condition.Key">@condition.Key (@condition.Value)</option>
+                }
+            </select>
+        </div>
 
         @if (filteredPatients != null)
         {
-            <div>
+            <div class="filtered-patients">
                 <h2>Patients with @selectedCondition</h2>
                 @if (filteredPatients.Count > 0)
                 {
@@ -51,18 +55,20 @@
             </div>
         }
 
-        <h2>Quick Links</h2>
-        <ul>
-            <li><NavLink href="/patients">View List of All Patients</NavLink></li>
-            <li><NavLink href="/patients/create">Add New Patient</NavLink></li>
-        </ul>
+        <div class="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><NavLink href="/patients">View List of All Patients</NavLink></li>
+                <li><NavLink href="/patients/create">Add New Patient</NavLink></li>
+            </ul>
+        </div>
     </div>
 
     <div class="right-container">
         <div class="quick-access">
             <h2>Quick Access by Patient ID</h2>
             <label for="patientIdInput">Patient ID:</label>
-            <input type="number" id="patientIdInput" @bind="patientIdInput" placeholder="Enter Patient ID" class="quick-access-input" title="Enter the patient ID to quickly access their details" min="1" />
+            <input type="text" id="patientIdInput" @bind="patientIdInputString" @oninput="ValidateInput" placeholder="Enter Patient ID" class="quick-access-input" title="Enter the patient ID to quickly access their details" />
             <button @onclick="QuickAccessPatient" class="quick-access-button">Go</button>
             <button @onclick="ClearPatientIdInput" class="quick-access-clear-button">Clear</button>
             @if (!string.IsNullOrEmpty(errorMessage))
@@ -88,9 +94,10 @@
     private int totalPatients;
     private double averageAge;
     private Dictionary<string, int> mostCommonConditions = new();
-    private List<string> allConditions = new();
+    private Dictionary<string, int> allConditionsWithCounts = new();
     private string selectedCondition = string.Empty;
     private List<Patient>? filteredPatients;
+    private string patientIdInputString = string.Empty;
     private int patientIdInput;
     private string errorMessage = string.Empty;
     private Patient? foundPatient;
@@ -114,13 +121,17 @@
             .Take(5)
             .ToDictionary(g => g.Key, g => g.Count());
 
-        allConditions = conditions.Distinct().ToList();
+        allConditionsWithCounts = patients
+            .SelectMany(p => p.Conditions ?? new List<string>())
+            .GroupBy(c => c)
+            .ToDictionary(g => g.Key, g => g.Count());
     }
 
     private async void OnConditionChanged(ChangeEventArgs e)
     {
         selectedCondition = e.Value?.ToString() ?? string.Empty;
         await FilterPatients();
+        StateHasChanged(); // Force re-render
     }
 
     private async Task FilterPatients()
@@ -134,7 +145,7 @@
 
     private async Task QuickAccessPatient()
     {
-        if (patientIdInput > 0)
+        if (int.TryParse(patientIdInputString, out patientIdInput) && patientIdInput > 0)
         {
             using var context = DbFactory.CreateDbContext();
             foundPatient = await context.Patient.FirstOrDefaultAsync(p => p.Id == patientIdInput);
@@ -151,9 +162,14 @@
 
     private void ClearPatientIdInput()
     {
-        patientIdInput = 0;
+        patientIdInputString = string.Empty;
         errorMessage = string.Empty;
         foundPatient = null;
+    }
+
+    private void ValidateInput(ChangeEventArgs e)
+    {
+        patientIdInputString = new string(patientIdInputString.Where(char.IsDigit).ToArray());
     }
 }
 
