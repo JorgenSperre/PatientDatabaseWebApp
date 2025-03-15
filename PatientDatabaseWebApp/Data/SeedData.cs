@@ -17,21 +17,9 @@ public class SeedData
                 "Null PatientDatabaseWebAppContext or Patient DbSet");
         }
 
-
-
-
-
-
-
         // Delete all existing patients                                                         For testing purposes. Remove later.
         context.Patient.RemoveRange(context.Patient);
         context.SaveChanges();
-
-
-
-
-
-
 
         if (context.Patient.Any())
         {
@@ -43,43 +31,43 @@ public class SeedData
             new Patient
             {
                 Name = "John Doe",
-                DateOfBirth = new DateTime(1980, 1, 1),
+                DateOfBirth = new DateOnly(1980, 1, 1),
                 Conditions = "Hypertension",
             },
             new Patient
             {
                 Name = "Jane Smith",
-                DateOfBirth = new DateTime(1990, 2, 2),
+                DateOfBirth = new DateOnly(1990, 2, 2),
                 Conditions = "Diabetes",
             },
             new Patient
             {
                 Name = "Alice Johnson",
-                DateOfBirth = new DateTime(1975, 3, 3),
+                DateOfBirth = new DateOnly(1975, 3, 3),
                 Conditions = "Asthma",
             },
             new Patient
             {
                 Name = "Bob Brown",
-                DateOfBirth = new DateTime(2000, 4, 4),
+                DateOfBirth = new DateOnly(2000, 4, 4),
                 Conditions = "None",
             },
             new Patient
             {
                 Name = "Charlie Davis",
-                DateOfBirth = new DateTime(1965, 5, 5),
+                DateOfBirth = new DateOnly(1965, 5, 5),
                 Conditions = "Heart Disease",
             },
             new Patient
             {
                 Name = "Eve White",
-                DateOfBirth = new DateTime(1985, 6, 6),
+                DateOfBirth = new DateOnly(1985, 6, 6),
                 Conditions = "Hangry",
             },
             new Patient
             {
                 Name = "Frank Green",
-                DateOfBirth = new DateTime(1995, 7, 7),
+                DateOfBirth = new DateOnly(1995, 7, 7),
                 Conditions = "Vegan",
             }
         };

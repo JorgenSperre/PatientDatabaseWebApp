@@ -10,17 +10,17 @@ namespace PatientDatabaseWebApp.DataModels
         //[Required(ErrorMessage = "Name is required")]
         public string? Name { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
         public int Age { get; set; }
 
         public string? Conditions { get; set; }
 
         public void FindAge()
         {
-            DateTime today = DateTime.Today;
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
             var years = today.Year - this.DateOfBirth.Year;
 
-            if (this.DateOfBirth.Date > today.AddYears(-years))
+            if (this.DateOfBirth > today.AddYears(-years))
             {
                 years--;
             }

@@ -12,9 +12,9 @@ namespace PatientDatabaseWebApp.Tests
             // Arrange
             var patient = new Patient
             {
-                DateOfBirth = new DateTime(2000, 1, 1)
+                DateOfBirth = new DateOnly(2000, 1, 1)
             };
-            var expectedAge = DateTime.Today.Year - 2000;
+            var expectedAge = DateOnly.FromDateTime(DateTime.Today).Year - 2000;
 
             // Act
             patient.FindAge();
@@ -29,9 +29,9 @@ namespace PatientDatabaseWebApp.Tests
             // Arrange
             var patient = new Patient
             {
-                DateOfBirth = new DateTime(2000, DateTime.Today.Month + 1, 1)
+                DateOfBirth = new DateOnly(2000, DateTime.Today.Month + 1, 1)
             };
-            var expectedAge = DateTime.Today.Year - 2000 - 1;
+            var expectedAge = DateOnly.FromDateTime(DateTime.Today).Year - 2000 - 1;
 
             // Act
             patient.FindAge();
@@ -46,7 +46,7 @@ namespace PatientDatabaseWebApp.Tests
             // Arrange
             var patient = new Patient
             {
-                DateOfBirth = DateTime.Today
+                DateOfBirth = DateOnly.FromDateTime(DateTime.Today)
             };
             var expectedAge = 0;
 
@@ -63,14 +63,14 @@ namespace PatientDatabaseWebApp.Tests
             // Arrange
             var patient = new Patient
             {
-                DateOfBirth = new DateTime(2000, 2, 29) // Leap year birthday
+                DateOfBirth = new DateOnly(2000, 2, 29) // Leap year birthday
             };
 
             // Act
             patient.FindAge();
 
             // Assert
-            var today = DateTime.Today;
+            var today = DateOnly.FromDateTime(DateTime.Today);
             var expectedAge = today.Year - 2000;
             if (today.Month < 2 || (today.Month == 2 && today.Day < 29))
             {
