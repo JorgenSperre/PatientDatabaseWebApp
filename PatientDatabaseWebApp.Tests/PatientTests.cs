@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using PatientDatabaseWebApp.DataModels;
 using Xunit;
@@ -109,16 +110,17 @@ namespace PatientDatabaseWebApp.Tests
         }
 
         [Fact]
-        public void Conditions_CanBeValidString()
+        public void Conditions_CanBeValidList()
         {
             // Arrange
             var patient = new Patient
             {
-                Conditions = "Diabetes"
+                Conditions = new List<string> { "Diabetes" }
             };
 
             // Act & Assert
-            Assert.Equal("Diabetes", patient.Conditions);
+            Assert.Single(patient.Conditions);
+            Assert.Equal("Diabetes", patient.Conditions[0]);
         }
 
         [Fact]
@@ -135,16 +137,16 @@ namespace PatientDatabaseWebApp.Tests
         }
 
         [Fact]
-        public void Conditions_CanBeEmpty()
+        public void Conditions_CanBeEmptyList()
         {
             // Arrange
             var patient = new Patient
             {
-                Conditions = string.Empty
+                Conditions = new List<string>()
             };
 
             // Act & Assert
-            Assert.Equal(string.Empty, patient.Conditions);
+            Assert.Empty(patient.Conditions);
         }
         #endregion
 
@@ -239,7 +241,7 @@ namespace PatientDatabaseWebApp.Tests
             // Arrange
             var patient = new Patient
             {
-                Conditions = "Diabetes123"
+                Conditions = new List<string> { "Diabetes123" }
             };
             var validationContext = new ValidationContext(patient);
             var validationResults = new List<ValidationResult>();
@@ -258,7 +260,7 @@ namespace PatientDatabaseWebApp.Tests
             // Arrange
             var patient = new Patient
             {
-                Conditions = new string('a', 101) // Exceeds max length of 100
+                Conditions = new List<string> { new string('a', 101) } // Exceeds max length of 100
             };
             var validationContext = new ValidationContext(patient);
             var validationResults = new List<ValidationResult>();
@@ -315,7 +317,7 @@ namespace PatientDatabaseWebApp.Tests
             // Arrange
             var patient = new Patient
             {
-                Conditions = "Diabetes@123" // Contains special character '@'
+                Conditions = new List<string> { "Diabetes@123" } // Contains special character '@'
             };
             var validationContext = new ValidationContext(patient);
             var validationResults = new List<ValidationResult>();
@@ -369,3 +371,4 @@ namespace PatientDatabaseWebApp.Tests
         #endregion
     }
 }
+

@@ -18,28 +18,46 @@
     <a href="patients/create">Add New Patient</a>
 </p>
 <div>
-<QuickGrid Class="table" Items="FilteredPatients" Pagination="pagination">
-    <PropertyColumn Property="patient => patient.Id" Sortable="true" />
-    <PropertyColumn Property="patient => patient.Name" Sortable="true" />
-    <PropertyColumn Property="patient => patient.DateOfBirth" Title="Date of Birth" Sortable="true" />
-    <PropertyColumn Property="patient => patient.Age" Sortable="true" />
-    <PropertyColumn Property="patient => patient.Conditions" Sortable="true" />
+    <QuickGrid Class="table" Items="FilteredPatients" Pagination="pagination">
+        <PropertyColumn Property="patient => patient.Id" Sortable="true" />
+        <PropertyColumn Property="patient => patient.Name" Sortable="true" />
+        <PropertyColumn Property="patient => patient.DateOfBirth" Title="Date of Birth" Sortable="true" />
+        <PropertyColumn Property="patient => patient.Age" Sortable="true" />
+        <TemplateColumn Context="patient">
+            @if (patient.Conditions != null)
+            {
+                @string.Join(", ", patient.Conditions)
+            }
+            else
+            {
+                <span>No conditions</span>
+            }
+        </TemplateColumn>
 
-    <TemplateColumn Context="patient">
-        <a href="@($"patients/edit?id={patient.Id}")">Edit</a> |
-        <a href="@($"patients/details?id={patient.Id}")">Details</a> |
-        <a href="@($"patients/delete?id={patient.Id}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+        <TemplateColumn Context="patient">
+            <a href="@($"patients/edit?id={patient.Id}")">Edit</a> |
+            <a href="@($"patients/details?id={patient.Id}")">Details</a> |
+            <a href="@($"patients/delete?id={patient.Id}")">Delete</a>
+        </TemplateColumn>
+    </QuickGrid>
 </div>
 <Paginator State="pagination" />
+<div>
+    <label for="itemsPerPage">Items per page:</label>
+    <select id="itemsPerPage" @bind="pagination.ItemsPerPage">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+    </select>
+</div>
 
 @code {
     private PatientDatabaseWebAppContext context = default!;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        context = DbFactory.CreateDbContext();
+        context = await DbFactory.CreateDbContextAsync();
     }
 
     public async ValueTask DisposeAsync() => await context.DisposeAsync();
@@ -49,7 +67,7 @@
     private IQueryable<Patient> FilteredPatients =>
         context.Patient.Where(m => m.Name!.Contains(searchFilter) || m.Id.ToString().Contains(searchFilter));
 
-    private PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
 
     private void ClearSearch()
     {

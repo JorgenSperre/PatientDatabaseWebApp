@@ -1,7 +1,160 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@using PatientDatabaseWebApp.DataModels
+@inject IDbContextFactory<PatientDatabaseWebApp.Data.PatientDatabaseWebAppContext> DbFactory
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Welcome to the Patient Database</h1>
 
-Welcome to your new app.
+<div class="main-container">
+    <div class="left-container">
+        <h2>Patient Statistics</h2>
+        <p>Total Patients: @totalPatients</p>
+        <p>Average Age: @Math.Round(averageAge)</p>
+        <p>Most Common Conditions:</p>
+        <ul>
+            @foreach (var condition in mostCommonConditions)
+            {
+                <li>@condition.Key: @condition.Value</li>
+            }
+        </ul>
+
+        <h2>Find Patients by Condition</h2>
+        <select @onchange="OnConditionChanged">
+            <option value="">Select a condition</option>
+            @foreach (var condition in allConditions)
+            {
+                <option value="@condition">@condition</option>
+            }
+        </select>
+
+        @if (filteredPatients != null)
+        {
+            <div>
+                <h2>Patients with @selectedCondition</h2>
+                @if (filteredPatients.Count > 0)
+                {
+                    <ul>
+                        @foreach (var patient in filteredPatients)
+                        {
+                            <li>@patient.Name (@patient.DateOfBirth.ToShortDateString()) <a href="@($"patients/details?id={patient.Id}")">Details</a></li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No patients found with the condition "@selectedCondition".</p>
+                }
+            </div>
+        }
+
+        <h2>Quick Links</h2>
+        <ul>
+            <li><NavLink href="/patients">View List of All Patients</NavLink></li>
+            <li><NavLink href="/patients/create">Add New Patient</NavLink></li>
+        </ul>
+    </div>
+
+    <div class="right-container">
+        <div class="quick-access">
+            <h2>Quick Access by Patient ID</h2>
+            <label for="patientIdInput">Patient ID:</label>
+            <input type="number" id="patientIdInput" @bind="patientIdInput" placeholder="Enter Patient ID" class="quick-access-input" title="Enter the patient ID to quickly access their details" min="1" />
+            <button @onclick="QuickAccessPatient" class="quick-access-button">Go</button>
+            <button @onclick="ClearPatientIdInput" class="quick-access-clear-button">Clear</button>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <p class="error-message">@errorMessage</p>
+            }
+        </div>
+
+        @if (foundPatient != null)
+        {
+            <div class="found-patient">
+                <h2>Patient Details</h2>
+                <p><strong>Name:</strong> @foundPatient.Name</p>
+                <p><strong>Date of Birth:</strong> @foundPatient.DateOfBirth.ToShortDateString()</p>
+                <p><strong>Age:</strong> @foundPatient.Age</p>
+                <p><strong>Conditions:</strong> @string.Join(", ", foundPatient.Conditions ?? new List<string>())</p>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private int totalPatients;
+    private double averageAge;
+    private Dictionary<string, int> mostCommonConditions = new();
+    private List<string> allConditions = new();
+    private string selectedCondition = string.Empty;
+    private List<Patient>? filteredPatients;
+    private int patientIdInput;
+    private string errorMessage = string.Empty;
+    private Patient? foundPatient;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        totalPatients = await context.Patient.CountAsync();
+        averageAge = await context.Patient.AverageAsync(p => p.Age);
+
+        var patients = await context.Patient.ToListAsync();
+
+        var conditions = patients
+            .Where(p => p.Conditions != null)
+            .SelectMany(p => p.Conditions)
+            .ToList();
+
+        mostCommonConditions = conditions
+            .GroupBy(c => c)
+            .OrderByDescending(g => g.Count())
+            .Take(5)
+            .ToDictionary(g => g.Key, g => g.Count());
+
+        allConditions = conditions.Distinct().ToList();
+    }
+
+    private async void OnConditionChanged(ChangeEventArgs e)
+    {
+        selectedCondition = e.Value?.ToString() ?? string.Empty;
+        await FilterPatients();
+    }
+
+    private async Task FilterPatients()
+    {
+        using var context = DbFactory.CreateDbContext();
+        var patients = await context.Patient.ToListAsync();
+        filteredPatients = patients
+            .Where(p => p.Conditions != null && p.Conditions.Contains(selectedCondition))
+            .ToList();
+    }
+
+    private async Task QuickAccessPatient()
+    {
+        if (patientIdInput > 0)
+        {
+            using var context = DbFactory.CreateDbContext();
+            foundPatient = await context.Patient.FirstOrDefaultAsync(p => p.Id == patientIdInput);
+            if (foundPatient == null)
+            {
+                errorMessage = $"No patient found with ID {patientIdInput}.";
+            }
+            else
+            {
+                errorMessage = string.Empty;
+            }
+        }
+    }
+
+    private void ClearPatientIdInput()
+    {
+        patientIdInput = 0;
+        errorMessage = string.Empty;
+        foundPatient = null;
+    }
+}
+
+

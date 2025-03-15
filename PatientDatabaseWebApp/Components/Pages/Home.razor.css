@@ -1,0 +1,77 @@
+﻿.main-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-container {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.right-container {
+    flex: 1;
+    max-width: 300px;
+}
+
+.quick-access {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .quick-access h2 {
+        margin-top: 0;
+    }
+
+.quick-access-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.quick-access-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .quick-access-button:hover {
+        background-color: #0056b3;
+    }
+
+.quick-access-clear-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    .quick-access-clear-button:hover {
+        background-color: #c82333;
+    }
+
+.error-message {
+    color: #dc3545;
+    margin-top: 10px;
+}
+
+.found-patient {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

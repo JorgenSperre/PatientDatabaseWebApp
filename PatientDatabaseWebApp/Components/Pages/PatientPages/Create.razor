@@ -27,7 +27,21 @@
             </div>
             <div class="mb-3">
                 <label for="conditions" class="form-label">Conditions:</label>
-                <InputText id="conditions" @bind-Value="Patient.Conditions" class="form-control" />
+                <InputText id="conditions" @bind-Value="conditionsInput" class="form-control" />
+                <button type="button" @onclick="AddCondition" class="btn btn-secondary">Add Condition</button>
+                <ul>
+                    @if (Patient.Conditions != null)
+                    {
+                        @foreach (var condition in Patient.Conditions)
+                        {
+                            <li>@condition <button type="button" @onclick="() => RemoveCondition(condition)" class="btn btn-danger btn-sm">Remove</button></li>
+                        }
+                    }
+                    else
+                    {
+                        <li>No conditions</li>
+                    }
+                </ul>
                 <ValidationMessage For="() => Patient.Conditions" class="text-danger" />
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
@@ -42,6 +56,23 @@
 @code {
     [SupplyParameterFromForm]
     private Patient Patient { get; set; } = new();
+
+    private string conditionsInput = string.Empty;
+
+    private void AddCondition()
+    {
+        if (!string.IsNullOrWhiteSpace(conditionsInput))
+        {
+            Patient.Conditions ??= new List<string>();
+            Patient.Conditions.Add(conditionsInput);
+            conditionsInput = string.Empty;
+        }
+    }
+
+    private void RemoveCondition(string condition)
+    {
+        Patient.Conditions?.Remove(condition);
+    }
 
     private async Task AddPatient()
     {

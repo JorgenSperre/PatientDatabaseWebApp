@@ -16,7 +16,8 @@
     {
         <p><em>Loading...</em></p>
     }
-    else {
+    else
+    {
         <dl class="row">
             <dt class="col-sm-2">Name</dt>
             <dd class="col-sm-10">@patient.Name</dd>
@@ -31,7 +32,21 @@
         </dl>
         <dl class="row">
             <dt class="col-sm-2">Conditions</dt>
-            <dd class="col-sm-10">@patient.Conditions</dd>
+            <dd class="col-sm-10">
+                <ul>
+                    @if (patient.Conditions != null)
+                    {
+                        @foreach (var condition in patient.Conditions)
+                        {
+                            <li>@condition</li>
+                        }
+                    }
+                    else
+                    {
+                        <li>No conditions</li>
+                    }
+                </ul>
+            </dd>
         </dl>
         <EditForm method="post" Model="patient" OnValidSubmit="DeletePatient" FormName="delete" Enhance>
             <button type="submit" class="btn btn-danger" disabled="@(patient is null)">Delete</button> |
