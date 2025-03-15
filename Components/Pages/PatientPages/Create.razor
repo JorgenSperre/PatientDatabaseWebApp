@@ -17,13 +17,18 @@
             <ValidationSummary class="text-danger" role="alert"/>
             <div class="mb-3">
                 <label for="name" class="form-label">Name:</label> 
-                <InputText id="name" @bind-Value="Patient.Name" class="form-control" aria-required="true"/> 
+                <InputText id="name" @bind-Value="Patient.Name" class="form-control" /> 
                 <ValidationMessage For="() => Patient.Name" class="text-danger" /> 
             </div>        
             <div class="mb-3">
                 <label for="dateofbirth" class="form-label">DateOfBirth:</label> 
                 <InputDate id="dateofbirth" @bind-Value="Patient.DateOfBirth" class="form-control" /> 
                 <ValidationMessage For="() => Patient.DateOfBirth" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="age" class="form-label">Age:</label> 
+                <InputNumber id="age" @bind-Value="Patient.Age" class="form-control" /> 
+                <ValidationMessage For="() => Patient.Age" class="text-danger" /> 
             </div>        
             <div class="mb-3">
                 <label for="conditions" class="form-label">Conditions:</label> 
