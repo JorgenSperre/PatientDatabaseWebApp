@@ -12,6 +12,7 @@
 
 @if (Patient != null)
 {
+    <a href="@($"patients/delete?id={Patient.Id}")">Delete Patient</a>
     <EditForm Model="Patient" OnValidSubmit="UpdatePatient">
         <DataAnnotationsValidator />
         <ValidationSummary />
@@ -112,8 +113,7 @@ else
                 throw;
             }
         }
-
-        NavigationManager.NavigateTo("/patients");
+        NavigationManager.NavigateTo($"/patients/details?id={Patient.Id}");
     }
 
     private bool PatientExists(int id)
