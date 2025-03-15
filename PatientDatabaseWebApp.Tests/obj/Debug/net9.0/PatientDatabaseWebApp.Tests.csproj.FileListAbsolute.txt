@@ -644,3 +644,4 @@ C:\Users\jorge\source\repos\PatientDatabaseWebApp\PatientDatabaseWebApp.Tests\ob
 C:\Users\jorge\source\repos\PatientDatabaseWebApp\PatientDatabaseWebApp.Tests\obj\Debug\net9.0\PatientDatabaseWebApp.Tests.pdb
 C:\Users\jorge\source\repos\PatientDatabaseWebApp\PatientDatabaseWebApp.Tests\obj\Debug\net9.0\PatientDatabaseWebApp.Tests.genruntimeconfig.cache
 C:\Users\jorge\source\repos\PatientDatabaseWebApp\PatientDatabaseWebApp.Tests\obj\Debug\net9.0\ref\PatientDatabaseWebApp.Tests.dll
+C:\Users\jorge\source\repos\PatientDatabaseWebApp\PatientDatabaseWebApp.Tests\obj\Debug\net9.0\PatientDatabaseWebApp.Tests.sourcelink.json

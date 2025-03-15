@@ -79,5 +79,70 @@ namespace PatientDatabaseWebApp.Tests
 
             Assert.Equal(expectedAge, patient.Age);
         }
+
+        [Fact]
+        public void Name_CanBeNull()
+        {
+            // Arrange
+            var patient = new Patient
+            {
+                Name = null
+            };
+
+            // Act & Assert
+            Assert.Null(patient.Name);
+        }
+
+        [Fact]
+        public void Name_CanBeEmpty()
+        {
+            // Arrange
+            var patient = new Patient
+            {
+                Name = string.Empty
+            };
+
+            // Act & Assert
+            Assert.Equal(string.Empty, patient.Name);
+        }
+
+        [Fact]
+        public void Conditions_CanBeValidString()
+        {
+            // Arrange
+            var patient = new Patient
+            {
+                Conditions = "Diabetes"
+            };
+
+            // Act & Assert
+            Assert.Equal("Diabetes", patient.Conditions);
+        }
+
+        [Fact]
+        public void Conditions_CanBeNull()
+        {
+            // Arrange
+            var patient = new Patient
+            {
+                Conditions = null
+            };
+
+            // Act & Assert
+            Assert.Null(patient.Conditions);
+        }
+
+        [Fact]
+        public void Conditions_CanBeEmpty()
+        {
+            // Arrange
+            var patient = new Patient
+            {
+                Conditions = string.Empty
+            };
+
+            // Act & Assert
+            Assert.Equal(string.Empty, patient.Conditions);
+        }
     }
 }

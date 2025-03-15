@@ -6,7 +6,7 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<PatientDatabaseWebApp.Data.PatientDatabaseWebAppContext> DbFactory
 
-<PageTitle>Patient Database</PageTitle>
+<PageTitle>Index</PageTitle>
 
 <h1>Patients</h1>
 
@@ -17,7 +17,7 @@
 <QuickGrid Class="table" Items="context.Patient">
     <PropertyColumn Property="patient => patient.Id" />
     <PropertyColumn Property="patient => patient.Name" />
-    <PropertyColumn Property="patient => patient.DateOfBirth" />
+    <PropertyColumn Property="patient => patient.DateOfBirth" Title="Date of Birth"/>
     <PropertyColumn Property="patient => patient.Age" />
     <PropertyColumn Property="patient => patient.Conditions" />
 
