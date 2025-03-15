@@ -18,15 +18,12 @@ namespace PatientDatabaseWebApp.Data
                     "Null PatientDatabaseWebAppContext or Patient DbSet");
             }
 
-            // Delete all existing patients                                                         For testing purposes. Remove later.
-            context.Patient.RemoveRange(context.Patient);
-            context.SaveChanges();
-
-            if (context.Patient.Any())
+            // Drop and recreate the database
+            if (true)
             {
-                return;
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
             }
-
             var conditionsList = new List<string>
             {
                 "Hypertension", "Diabetes", "Asthma", "Heart Disease", "Arthritis",
@@ -56,7 +53,7 @@ namespace PatientDatabaseWebApp.Data
 
             // Generate additional patients
             var random = new Random();
-            for (int i = 0; i <= 100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var randomYear = random.Next(1950, 2010);
                 var randomMonth = random.Next(1, 13);
