@@ -9,12 +9,17 @@
 <PageTitle>Index</PageTitle>
 
 <h1>Patients</h1>
-
+<div>
+    <form action="/patients" data-enhance data-permanent>
+        <input type="search" name="nameFilter" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
 <p>
     <a href="patients/create">Add New Patient</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Patient">
+<QuickGrid Class="table" Items="FilteredPatients">
     <PropertyColumn Property="patient => patient.Id" />
     <PropertyColumn Property="patient => patient.Name" />
     <PropertyColumn Property="patient => patient.DateOfBirth" Title="Date of Birth"/>
@@ -37,4 +42,12 @@
     }
 
     public async ValueTask DisposeAsync() => await context.DisposeAsync();
+
+    [SupplyParameterFromQuery]
+    private string? NameFilter { get; set; }
+
+    private IQueryable<Patient> FilteredPatients =>
+        int.TryParse(NameFilter, out int id)
+            ? context.Patient.Where(m => m.Id == id)
+            : context.Patient.Where(m => m.Name!.Contains(NameFilter ?? string.Empty));
 }
