@@ -1,5 +1,6 @@
 ﻿@page "/"
 @rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.QuickGrid
 @using Microsoft.EntityFrameworkCore
 @using PatientDatabaseWebApp.DataModels
 @inject IDbContextFactory<PatientDatabaseWebApp.Data.PatientDatabaseWebAppContext> DbFactory
@@ -85,11 +86,9 @@
                 <p><strong>Date of Birth:</strong> @foundPatient.DateOfBirth.ToShortDateString()</p>
                 <p><strong>Age:</strong> @foundPatient.Age</p>
                 <p><strong>Conditions:</strong> @string.Join(", ", foundPatient.Conditions ?? new List<string>())</p>
-                <TemplateColumn Context="patient">
-                    <a href="@($"patients/edit?id={foundPatient.Id}")">Edit</a> |
-                    <a href="@($"patients/details?id={foundPatient.Id}")">Details</a> |
-                    <a href="@($"patients/delete?id={foundPatient.Id}")">Delete</a>
-                </TemplateColumn>
+                <a href="@($"patients/edit?id={foundPatient.Id}")">Edit</a> |
+                <a href="@($"patients/details?id={foundPatient.Id}")">Details</a> |
+                <a href="@($"patients/delete?id={foundPatient.Id}")">Delete</a>
             </div>
         }
     </div>
