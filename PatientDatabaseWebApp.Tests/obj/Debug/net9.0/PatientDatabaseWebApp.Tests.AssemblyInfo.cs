@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PatientDatabaseWebApp.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c93382d6ee54bc7b806e45f5cf0921e8513abfff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e362e3c7c762cbc85f3937d553ec17c435d3668")]
 [assembly: System.Reflection.AssemblyProductAttribute("PatientDatabaseWebApp.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PatientDatabaseWebApp.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
