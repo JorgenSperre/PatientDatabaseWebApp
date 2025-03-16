@@ -30,7 +30,7 @@ Visual Studio:
 Visual Studio Code:
 Latest releases of:
 * [Visual studio code](https://code.visualstudio.com/download)
-* [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
 * [.Net SDK](https://dotnet.microsoft.com/download/dotnet)
 
 ### Installation
