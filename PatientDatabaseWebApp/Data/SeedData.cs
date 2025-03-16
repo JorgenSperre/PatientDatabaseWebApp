@@ -22,8 +22,9 @@ namespace PatientDatabaseWebApp.Data
             if (true)
             {
                 context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
             }
+            context.Database.EnsureCreated();
+
             var conditionsList = new List<string>
             {
                 "Hypertension", "Diabetes", "Asthma", "Heart Disease", "Arthritis",
