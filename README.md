@@ -28,6 +28,7 @@ Visual Studio:
 * [Visual Studio (latest release)](https://visualstudio.microsoft.com/downloads/) with the ASP.NET and web development workload
 
 Visual Studio Code:
+
 Latest releases of:
 * [Visual studio code](https://code.visualstudio.com/download)
 * [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
